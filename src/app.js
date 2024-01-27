@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 const app = express();
 
-app.use(cors({  //ye  app.use()  middlewares aur CONFIGURATION ke liye use hota hai.
+app.use(cors({  //ye  app.use()  middlewares and CONFIGURATION ke liye use hota hai.
     origin: process.env.CORS_ORIGIN,
     Credential: true
 }))
@@ -12,6 +12,13 @@ app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
 app.use(express.static("public"))
 app.use(cookieParser());
+
+// Routes import
+import userRouter from "./routes/user.router.js";
+
+// Routes Declaration
+app.use("/api/v1/users", userRouter)
+
 
 
 export { app }
